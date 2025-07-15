@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const ppNeue = localFont({
+  src: "../public/fonts/ppneue.woff2",
+});
 
 export const metadata: Metadata = {
   title: "Ultra GSAP Animation",
@@ -13,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`${ppNeue.className} antialiased`}>{children}</body>
     </html>
   );
 }

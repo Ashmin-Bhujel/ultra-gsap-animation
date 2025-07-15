@@ -1,7 +1,25 @@
+"use client";
+import { Loader } from "@/components";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useState } from "react";
+
 export default function Home() {
+  const [loaderAnimationFinished, setLoaderAnimationFinished] = useState(false);
+  const [animationTimeline, setAnimationTimeline] =
+    useState<GSAPTimeline | null>(null);
+
+  // Create global animation timeline
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      onComplete: () => setLoaderAnimationFinished(true),
+    });
+    setAnimationTimeline(tl);
+  });
+
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-center text-4xl font-bold">Ultra GSAP Animation</h1>
+    <main>
+      <Loader animationTimeline={animationTimeline} />
     </main>
   );
 }
