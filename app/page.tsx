@@ -1,5 +1,5 @@
 "use client";
-import { Loader } from "@/components";
+import { Hero, Loader } from "@/components";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useState } from "react";
@@ -19,7 +19,11 @@ export default function Home() {
 
   return (
     <main>
-      <Loader animationTimeline={animationTimeline} />
+      {loaderAnimationFinished ? (
+        <Hero />
+      ) : (
+        <Loader animationTimeline={animationTimeline} />
+      )}
     </main>
   );
 }
